@@ -1,0 +1,36 @@
+ALGORITHM analyzeSentence
+VAR
+    letterCount, wordCount, vowelCount : INTEGER := 0;
+    i : INTEGER;
+    currentChar : CHAR;
+    sentence : STRING := "Aisha is Aisha and Yusuf is Yusuf."
+
+BEGIN
+    letterCount := 0;
+    wordCount := 0;
+    vowelCount := 0;
+    
+    FOR i FROM 1 TO LENGTH(sentence) DO
+        currentChar := sentence[i];
+        letterCount := letterCount + 1;
+        IF currentChar = "a" OR currentChar = "e" OR currentChar = "i" OR
+           currentChar = "o" OR currentChar = "u" OR currentChar = "A" OR
+           currentChar = "E" OR currentChar = "I" OR currentChar = "O" OR
+           currentChar = "U" THEN
+            vowelCount := vowelCount + 1;
+        ENDIF
+        
+        // Check if the current character is a space and the next character is not a space or the end of the sentence
+        IF currentChar = " "  AND sentence[i + 1] <> " "  AND sentence[i + 1] <> "." THEN
+            wordCount := wordCount + 1;
+        ENDIF
+    ENDFOR
+
+    IF letterCount > 1 THEN
+        wordCount := wordCount + 1;
+    ENDIF
+    
+    WRITE("Length: ", letterCount);
+    WRITE("Words: ", wordCount);
+    WRITE("Vowels: ", vowelCount);
+END
